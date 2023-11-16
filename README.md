@@ -1,2 +1,2 @@
-# golang-001-calcullar-taxa
+# golang-001-calcular-taxa
 Curso FullCycle
