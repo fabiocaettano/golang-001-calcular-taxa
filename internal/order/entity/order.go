@@ -9,6 +9,10 @@ type Order struct {
 	FinalPrice float64
 }
 
+type OrderRepositoryInterface interface {
+	Save(order *Order) error
+}
+
 func (o Order) IsValid() error {
 	if o.ID == "" {
 		return errors.New("invalid ID")
@@ -33,4 +37,13 @@ func NewOrder(id string, price float64, tax float64) (*Order, error) {
 		return nil, err
 	}
 	return order, nil
+}
+
+func (o *Order) CalculateFinalPrice() error {
+	o.FinalPrice = o.Price * o.Tax
+	err := o.IsValid()
+	if err != nil {
+		return err
+	}
+	return nil
 }
