@@ -6,3 +6,13 @@ services:
       context: .
     volumes:
       - .:/app        
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=orders
+      - MYSQL_PASSWORD=root
+    volumes:
+      - ./database/mysql:/var/lib/mysql
